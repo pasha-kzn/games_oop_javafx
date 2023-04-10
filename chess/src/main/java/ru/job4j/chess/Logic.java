@@ -21,6 +21,14 @@ public final class Logic {
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
+        for (Cell c : steps) {
+            for (Figure f : figures) {
+                if (f != null && c.equals(f.position())) {
+                    throw new OccupiedCellException(
+                            String.format("The cell %s isn't free", f.position()));
+                }
+            }
+        }
         return true;
     }
 
